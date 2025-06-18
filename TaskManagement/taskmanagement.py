@@ -2,6 +2,7 @@
 
 #Information to search by Task ID, starting from Task ID 1
 import easygui
+
 task_id = {
     "Task1" : {
 
@@ -12,9 +13,45 @@ task_id = {
         "Priority" : "3",
         "Status" : "In Progress",
 
+    },
+
+    "Task2" : {
+        "Task_ID" : "T2",
+        "Title" : "Implement Login Page",
+        "Description" : "Create the Login page for the website",
+        "Assignee" : "JSM",
+        "Priority" : "3",
+        "Status" : "Blocked",
+
+    },
+
+    "Task3" : {
+        "Task_ID" : "T3",
+        "Title" : "Fix Navigation Menu",
+        "Description" : "Fix the navigation menu to be user friendly",
+        
     }
 
 }
+
+def select_task():
+    #Allows the user to select a task from choices.
+    output = ""
+    tasks = []
+    for titles in task_id:
+        tasks.append(titles)
+
+    msg = "What Task ID would you like to select?"
+
+    title = "Task Choice"
+
+    task_choice = easygui.buttonbox(msg, title, tasks)
+
+    task_info = []
+
+    for task_information in task_id[task_choice]:
+        task_info.append(task_information)
+
 
 #Menu to choose which task needs to be opened
 def menu():
@@ -34,26 +71,12 @@ def menu():
         title = "Task ID Choices"
         choices = list(task_id)
 
-    for items in tasks:
-        choices.append(items)
+        for items in tasks:
+            choices.append(items)
     
-    task_selection = easygui.buttonbox(msg, title, choices)
+        task_selection = easygui.buttonbox(msg, title, choices)
 
-
-def select_task():
-    #Allows the user to select a task from choices.
-    output = ""
-    tasks = []
-    for titles in task_id:
-        tasks.append(titles)
-
-    msg = "What Task ID would you like to select?"
-
-    title = "Task Choice"
-
-    task_choice = easygui.buttonbox(msg, title, tasks)
 
 menu()
-    
 
 

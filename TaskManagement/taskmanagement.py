@@ -34,9 +34,9 @@ task_id = {
 
 }
 
-def select_task():
+def display_tasks(tasks):
     #Allows the user to select a task from choices.
-    output = ""
+    output = "" 
     tasks = []
     for titles in task_id:
         tasks.append(titles)
@@ -54,29 +54,15 @@ def select_task():
 
 
 #Menu to choose which task needs to be opened
-def menu():
-
-    tasks = {
-        "Select Task" : select_task
-    }
-
+def menu(tasks):
+    while True:
+        choice = easygui.buttonbox("Choose an action:", "Task Manager Menu", ["View All Tasks", "Edit task", "Exit"])
 #Retrieve values of the selected task
-
-    get_input ="Y"  
 
 #allow the user to select a task from the menu
 
-    while get_input == "Y":
-        msg = "Please select a Task ID to view"
-        title = "Task ID Choices"
-        choices = list(task_id)
-
-        for items in tasks:
-            choices.append(items)
-    
-        task_selection = easygui.buttonbox(msg, title, choices)
 
 
-menu()
+
 
 

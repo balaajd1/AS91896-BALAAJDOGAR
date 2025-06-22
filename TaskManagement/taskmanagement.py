@@ -11,7 +11,7 @@ task_id = {
         "Description" : "Create a mockup of the homepage",
         "Assignee" : "JSM",
         "Priority" : "3",
-        "Status" : "In Progress",
+        "Status" : "In Progress"
 
     },
 
@@ -21,7 +21,7 @@ task_id = {
         "Description" : "Create the Login page for the website",
         "Assignee" : "JSM",
         "Priority" : "3",
-        "Status" : "Blocked",
+        "Status" : "Blocked"
 
     },
 
@@ -29,7 +29,29 @@ task_id = {
         "Task_ID" : "T3",
         "Title" : "Fix Navigation Menu",
         "Description" : "Fix the navigation menu to be user friendly",
+        "Assignee" : "None",
+        "Priority" : "1",
+        "Status" : "Not Started"
         
+    },
+
+    "Task4" : {
+        "Task_ID" : "T4",
+        "Title" : "Add payment processing",
+        "Description" : "Implement payment processing for the website",
+        "Assignee" : "JLO",
+        "Priority" : "2",
+        "Status" : "In Progress"
+
+    },
+
+    "Task5" : {
+        "Task_ID" : "T5",
+        "Title" : "Create and About Us page",
+        "Description" : "Create a page with information about the company",
+        "Assignee" : "BDI",
+        "Priority" : "1",
+        "Status" : "Blocked"
     }
 
 }

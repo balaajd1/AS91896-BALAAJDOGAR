@@ -53,9 +53,54 @@ task_id = {
         "Priority" : "1",
         "Status" : "Blocked"
     }
-
+   
 }
 
+def print_all_tasks():
+    """Prints the selection of tasks and their details"""
+    output = ""
+
+    for task_title in task_id:
+        output += f"\n{task_title}\n"
+
+        for key, value in task_id[task_title].items():
+            output += f"{key}: {value}\n"
+
+    easygui.msgbox(output, "All Tasks")
+    return "Y"
+
+
+
+def show_menu():        
+    """Displays menu options for the user"""
+
+    options = {
+        #"Add Task": add_task,
+        #"Remove Task": remove_task,
+        #"Search Task": search_task,
+        #"Edit Task": edit_task,
+        "Print All Tasks": print_all_tasks,
+        #"Exit": exit_tasks
+
+    }
+
+    get_input = "Y"
+
+    while get_input == "Y":
+        msg = "What would you like to do?"
+        title = "Task Manager Application"
+        choices = []
+
+        for items in options:
+            choices.append(items)
+
+        selection = easygui.buttonbox(msg, title, choices)
+
+        get_input = options[selection]()
+    
+show_menu()
+
+"""
 def display_tasks(tasks):
     #Allows the user to select a task from choices.
     output = "" 
@@ -83,7 +128,7 @@ def menu(tasks):
 
 #allow the user to select a task from the menu
 
-
+"""
 
 
 

@@ -69,42 +69,20 @@ def print_all_tasks():
     easygui.msgbox(output, "All Tasks")
     return "Y"
 
+def search_task():
 
+    task_name = easygui.enterbox("Enter the task ID (e.g Task1):", "Search for a task") #asks the user for input of
+    #searching a task by name
 
-def show_menu():        
-    """Displays menu options for the user"""
+    if task_name in task_id:
+        task = task_id[task_name]
+        message = ""
+        for key, value in task.items
 
-    options = {
-        #"Add Task": add_task,
-        #"Remove Task": remove_task,
-        #"Search Task": search_task,
-        #"Edit Task": edit_task,
-        "Print All Tasks": print_all_tasks,
-        #"Exit": exit_tasks
-
-    }
-
-    get_input = "Y"
-
-    while get_input == "Y":
-        msg = "What would you like to do?"
-        title = "Task Manager Application"
-        choices = []
-
-        for items in options:
-            choices.append(items)
-
-        selection = easygui.buttonbox(msg, title, choices)
-
-        get_input = options[selection]()
-    
-show_menu()
-
-"""
-def display_tasks(tasks):
+def display_tasks():
     #Allows the user to select a task from choices.
     output = "" 
-    tasks = []
+    tasks = [task_id]
     for titles in task_id:
         tasks.append(titles)
 
@@ -121,15 +99,20 @@ def display_tasks(tasks):
 
 
 #Menu to choose which task needs to be opened
-def menu(tasks):
+def menu():
     while True:
-        choice = easygui.buttonbox("Choose an action:", "Task Manager Menu", ["View All Tasks", "Edit task", "Exit"])
+        selection = easygui.buttonbox("Choose an action:", "Task Manager Menu", ["View All Tasks", "Edit task", "Exit", "Search Task"])
+
+        if selection == "View All Tasks":
+            print_all_tasks()
+        elif selection == "Exit":
+            break
+        elif selection == "Search Task":
+            
+
+menu()
 #Retrieve values of the selected task
 
 #allow the user to select a task from the menu
-
-"""
-
-
 
 

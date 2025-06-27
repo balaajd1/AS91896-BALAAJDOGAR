@@ -77,7 +77,15 @@ def search_task():
     if task_name in task_id:
         task = task_id[task_name]
         message = ""
-        for key, value in task.items
+        for key, value in task.items():
+            
+            message += f"{key}: {value}\n" #finds the key inputted by the user in the search box
+
+        easygui.msgbox(message, f"Details for {task_name}") #runs through the key in dictionary and provides a msgbox of the items
+    else:   
+        easygui.msgbox("Task not found. Please input a valid Task ID")
+
+search_task()        
 
 def display_tasks():
     #Allows the user to select a task from choices.
@@ -108,6 +116,7 @@ def menu():
         elif selection == "Exit":
             break
         elif selection == "Search Task":
+            search_task()
             
 
 menu()

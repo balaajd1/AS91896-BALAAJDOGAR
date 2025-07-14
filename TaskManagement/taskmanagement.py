@@ -85,7 +85,7 @@ def search_task():
     else:   
         easygui.msgbox("Task not found. Please input a valid Task ID")
 
-search_task()        
+#search_task()  called from within menu    
 
 def display_tasks():
     #Allows the user to select a task from choices.
@@ -120,6 +120,8 @@ def menu():
             
 
 menu()
+
+
 #Retrieve values of the selected task
 
 #allow the user to select a task from the menu

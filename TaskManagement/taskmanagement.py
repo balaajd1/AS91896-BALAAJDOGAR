@@ -70,20 +70,27 @@ def print_all_tasks():
     return "Y"
 
 def search_task():
+    choice = easygui.buttonbox("Search by:", "Search Options", ["Task ID", "Assignee"])
 
-    task_name = easygui.enterbox("Enter the task ID (e.g Task1):", "Search for a task") #asks the user for input of
-    #searching a task by name
+    if choice == "Task ID":
+        task_name = easygui.enterbox("Enter the task ID (e.g Task1):", "Search for a task") #asks the user for input of
+        #searching a task by name
 
-    if task_name in task_id:
-        task = task_id[task_name]
-        message = ""
-        for key, value in task.items():
+        if task_name in task_id: 
+            task = task_id[task_name]
+            message = ""
+            for key, value in task.items():
             
-            message += f"{key}: {value}\n" #finds the key inputted by the user in the search box
+                message += f"{key}: {value}\n" #finds the key inputted by the user in the search box
 
-        easygui.msgbox(message, f"Details for {task_name}") #runs through the key in dictionary and provides a msgbox of the items
-    else:   
-        easygui.msgbox("Task not found. Please input a valid Task ID")
+            easygui.msgbox(message, f"Details for {task_name}") #runs through the key in dictionary and provides a msgbox of the items
+        else:   
+            easygui.msgbox("Task not found. Please input a valid Task ID") #invalid task id was entered
+
+    elif choice == "Assignee":
+        name = easygui.enterbox("Enter the assignee's 3 letter code (e.g JSM):", "Search by Assignee")
+
+    
 
 #search_task()  called from within menu    
 

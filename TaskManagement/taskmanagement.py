@@ -115,7 +115,7 @@ def display_tasks():
 def add_task():
     output = ""
     confirm_choices = ["Yes", "No"]
-    task_information = ["Task_ID," "Title", "Description", "Assignee", "Priority", "Status"]
+    task_information = ["Task_ID", "Title", "Description", "Assignee", "Priority", "Status"]
 
     msg = "Enter new task title:"
     title = "New Task Title"
@@ -138,8 +138,8 @@ def add_task():
             easygui.msgbox("Cancelling procedure")
             break
 
-    output += f"{new_task_information}: {new_task_info}\n"
-    task_id[new_task_name][new_task_information] = new_task_info
+        output += f"{new_task_information}: {new_task_info}\n"
+        task_id[new_task_name][new_task_information] = new_task_info
 
     msg = "Please double check if the task details entered are correct"
     title = "Task Confirmation"

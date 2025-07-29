@@ -112,10 +112,15 @@ def display_tasks():
     for task_information in task_id[task_choice]:
         task_info.append(task_information)
 
+def generatetaskid():
+    """Generates a new task ID based on the number of existing tasks"""
+    task_count = len(task_id)
+    new_task_id = f"T{task_count + 1}"
+    return new_task_id
+
 def add_task():
-    output = ""
     confirm_choices = ["Yes", "No"]
-    task_information = ["Task_ID", "Title", "Description", "Assignee", "Priority", "Status"]
+    task_information = ["Title", "Description", "Assignee", "Priority", "Status"]
     
     msg = "Enter new task title:"
     title = "New Task Title"
@@ -125,8 +130,10 @@ def add_task():
     if new_task_name == None or new_task_name == "":
         return
 
-    task_id[new_task_name] = {}
-                                
+    new_task_id = generatetaskid()
+    task_id[new_task_name] = {"Task_ID": new_task_id}
+    output = f"Task_ID: {new_task_id}\n"
+
     for new_task_information in task_information:
         msg = f"Enter the {new_task_information} for {new_task_name}"
         title = f"{new_task_name} {new_task_information}"
@@ -134,15 +141,16 @@ def add_task():
         new_task_info = easygui.enterbox(msg, title)
 
         if new_task_info == None or new_task_info == "":
-
             easygui.msgbox("Cancelling procedure")
-            break
+            del task_id[new_task_name]
+            return
 
         output += f"{new_task_information}: {new_task_info}\n"
         task_id[new_task_name][new_task_information] = new_task_info
 
     msg = "Please double check if the task details entered are correct"
     title = "Task Confirmation"
+    easygui.msgbox(output, title)
 
 def edit_task():
 

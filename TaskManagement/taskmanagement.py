@@ -116,7 +116,7 @@ def add_task():
     output = ""
     confirm_choices = ["Yes", "No"]
     task_information = ["Task_ID", "Title", "Description", "Assignee", "Priority", "Status"]
-
+    
     msg = "Enter new task title:"
     title = "New Task Title"
 
@@ -126,7 +126,7 @@ def add_task():
         return
 
     task_id[new_task_name] = {}
-
+                                
     for new_task_information in task_information:
         msg = f"Enter the {new_task_information} for {new_task_name}"
         title = f"{new_task_name} {new_task_information}"
@@ -144,11 +144,38 @@ def add_task():
     msg = "Please double check if the task details entered are correct"
     title = "Task Confirmation"
 
+def edit_task():
+
+    output = ""
+    task_titles = []
+    for titles in task_id:
+        task_titles.append(titles)
+
+    msg = "What task would you edit the details of?"
+    title = "TASK CHOICE"
+
+    task_choice = easygui.buttonbox(msg, title, task_titles)
+
+    task_info = []
+
+    for task_information in task_id[task_choice]:
+        task_info.append(task_information)
+
+    msg = f"What detail of {task_choice} would you like to edit"
+    title = "TASK CHOICE"
+
+    edit_choice = easygui.buttonbox(msg, title, task_info)
+
+    msg = f"Enter the new {edit_choice} for {task_choice}"
+    title = f"ENTER UPDATED TASK INFORMATION"
+
+    #Line of code which is editing the game value
+    task_id[task_choice][edit_choice] = easygui.enterbox(msg, title) 
         
 #Menu to choose which task needs to be opened
 def menu():
     while True:
-        selection = easygui.buttonbox("Choose an action:", "Task Manager Menu", ["View All Tasks", "Edit task", "Exit", "Search Task", "Add Task"])
+        selection = easygui.buttonbox("Choose an action:", "Task Manager Menu", ["View All Tasks", "Edit Task", "Exit", "Search Task", "Add Task"])
 
         if selection == "View All Tasks":
             print_all_tasks()
@@ -158,6 +185,8 @@ def menu():
             search_task()
         elif selection == "Add Task":
             add_task()
+        elif selection == "Edit Task":
+            edit_task()
             
 
 menu()

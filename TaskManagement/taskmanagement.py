@@ -57,38 +57,53 @@ task_id = {
 }
 
 def print_all_tasks():
-    """Prints the selection of tasks and their details"""
+    """Prints the selection of tasks and their details including new
+      tasks that have been added and edited tasks"""
     output = ""
 
     for task_title in task_id:
         output += f"\n{task_title}\n"
 
         for key, value in task_id[task_title].items():
-            output += f"{key}: {value}\n"
+            output += f"{key}: {value}\n" #looks through the task
+            #dictionary 
 
-    easygui.msgbox(output, "All Tasks")
+    easygui.msgbox(output, "All Tasks") #message box will display all
+    #tasks and details
     return "Y"
 
 def search_task():
-    choice = easygui.buttonbox("Search by:", "Search Options", ["Task ID", "Assignee"])
+    choice = easygui.buttonbox("Search by:", "Search Options", ["Task ID", 
+                                                                "Assignee"])
 
     if choice == "Task ID":
-        task_name = easygui.enterbox("Enter the task ID (e.g Task1):", "Search for a task") #asks the user for input of
+        task_name = easygui.enterbox("Enter the task ID (e.g Task1):", "Search"
+        " for a task")
+         #asks the user for input of
         #searching a task by name
 
         if task_name in task_id: 
-            task = task_id[task_name]
+            task = task_id[task_name] #checks if the entered
+            #task name exists in the task_id dict
             message = ""
-            for key, value in task.items():
+            for key, value in task.items(): #looks through the task
+                #dictionary
             
-                message += f"{key}: {value}\n" #finds the key inputted by the user in the search box
+                message += f"{key}: {value}\n"
+                 #finds the key inputted by the user in the search box
 
-            easygui.msgbox(message, f"Details for {task_name}") #runs through the key in dictionary and provides a msgbox of the items
+            easygui.msgbox(message, f"Details for {task_name}") 
+            #runs through the key in dictionary and provides a msgbox 
+            # of the items
         else:   
-            easygui.msgbox("Task not found. Please input a valid Task ID") #invalid task id was entered
+            easygui.msgbox("Task not found. Please input a valid Task ID")
+             #invalid task id was entered, will prompt the user
+             #to input a valid task Id
 
     elif choice == "Assignee":
-        name = easygui.enterbox("Enter the assignee's 3 letter code (e.g JSM):", "Search by Assignee")
+        name = easygui.enterbox("Enter the assignee's 3 letter code (e.g JSM):"
+                                , "Search by Assignee") #allows the user
+        #to search by an assignee rather than
 
     
 
@@ -116,11 +131,19 @@ def generatetaskid():
     """Generates a new task ID based on the number of existing tasks"""
     task_count = len(task_id)
     new_task_id = f"T{task_count + 1}"
-    return new_task_id
+    return new_task_id #instead of the user having to input a task ID,
+#this function will add a new Task id based on the number of existing
+#tasks in the dictionary
+
+def progress_report():
+    """ generates a report of the tasks progress including 
+    the number of tasks completed, the number of tasks in progress,
+    the number of tasks blocked, and the number of tasks not yet started"""
 
 def add_task():
     confirm_choices = ["Yes", "No"]
-    task_information = ["Title", "Description", "Assignee", "Priority", "Status"]
+    task_information = ["Title", "Description", "Assignee", "Priority", 
+                        "Status"]
     
     msg = "Enter new task title:"
     title = "New Task Title"
@@ -183,25 +206,29 @@ def edit_task():
 #Menu to choose which task needs to be opened
 def menu():
     while True:
-        selection = easygui.buttonbox("Choose an action:", "Task Manager Menu", ["View All Tasks", "Edit Task", "Exit", "Search Task", "Add Task"])
+        selection = easygui.buttonbox("Choose an action:", "Task Manager Menu",
+                                       ["View All Tasks", "Edit Task", "Exit", 
+                                        "Search Task", "Add Task"])
+        #displays menu options for the user to choose from
 
-        if selection == "View All Tasks":
+        if selection == "View All Tasks": #if the user selects view
+            #all tasks, the print_all_tasks function is called.
             print_all_tasks()
-        elif selection == "Exit":
+        elif selection == "Exit": #if the user selects exit,
+            #the program will end.
             break
-        elif selection == "Search Task":
+        elif selection == "Search Task": #if the user selects search
+            #task, the search_task function is called.
             search_task()
-        elif selection == "Add Task":
+        elif selection == "Add Task": #if the user selects add task,
+            #the add task function is called.
             add_task()
-        elif selection == "Edit Task":
+        elif selection == "Edit Task": #if the user selects edit task,
+            # the edit_task function is called.
             edit_task()
             
 
 menu()
 
-
-#Retrieve values of the selected task
-
-#allow the user to select a task from the menu
 
 

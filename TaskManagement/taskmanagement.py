@@ -140,6 +140,11 @@ def progress_report():
     the number of tasks completed, the number of tasks in progress,
     the number of tasks blocked, and the number of tasks not yet started"""
 
+    genre_count = {} #displays genre count
+
+    for task in task_id:
+        progress = 
+
 def add_task():
     confirm_choices = ["Yes", "No"]
     task_information = ["Title", "Description", "Assignee", "Priority", 

@@ -110,7 +110,8 @@ def search_task():
 #search_task()  called from within menu    
 
 def display_tasks():
-    #Allows the user to select a task from choices.
+
+    """Allows the user to select a task from choices."""
     output = "" 
     tasks = [task_id]
     for titles in task_id:
@@ -143,9 +144,26 @@ def progress_report():
     genre_count = {} #displays genre count
 
     for task in task_id:
-        progress = 
+        progress = task_id[task]["progress"]
+        if progress in progress_report:
+            progress_count[progress] += 1
+        else:
+            progress_count[progress] = 1
+
+    output = "Tasks by Progress:\n"
+    for progress in progress_count:
+        output += f"{progress}: {progress_count[progress]}\n"
+
+    easygui.msgbox(output)
+    
+        
 
 def add_task():
+    """ this function allows the user to add a new task, which will
+    automatically be given a task_id based on the number of the last task
+    prior to it. the user can give it information such as title, description
+    , assignee, priority and status"""
+
     confirm_choices = ["Yes", "No"]
     task_information = ["Title", "Description", "Assignee", "Priority", 
                         "Status"]
@@ -173,6 +191,16 @@ def add_task():
             del task_id[new_task_name]
             return
 
+        if new_task_information == "Priority": #priority boundary and
+        #invalid
+            if new_task_info.isdigit() and 1 <= int(new_task_info) <= 3:
+                break #valid priority
+            else:
+                easygui.msgbox("Invalid priority. Please enter a number between 1 and 3")
+                continue #the function will ask the user again to retry
+        else:
+            break #accept input for fields other than priority
+
         output += f"{new_task_information}: {new_task_info}\n"
         task_id[new_task_name][new_task_information] = new_task_info
 
@@ -181,6 +209,8 @@ def add_task():
     easygui.msgbox(output, title)
 
 def edit_task():
+""" the user can edit an existing task using this function. they will be 
+prompted to select a task to edit and can then edit its details"""
 
     output = ""
     task_titles = []
@@ -210,10 +240,14 @@ def edit_task():
         
 #Menu to choose which task needs to be opened
 def menu():
+    """the menu is where functions will be called from. if a user selects an
+    option in the menu, the function will be called and run"""
+
     while True:
         selection = easygui.buttonbox("Choose an action:", "Task Manager Menu",
                                        ["View All Tasks", "Edit Task", "Exit", 
-                                        "Search Task", "Add Task"])
+                                        "Search Task", "Add Task",
+                                        "Progress Report"])
         #displays menu options for the user to choose from
 
         if selection == "View All Tasks": #if the user selects view
@@ -231,6 +265,9 @@ def menu():
         elif selection == "Edit Task": #if the user selects edit task,
             # the edit_task function is called.
             edit_task()
+        elif selection == "Progress Report": #if the user selects 
+        #progress report, the progress_report function is called.
+            progress_report()
             
 
 menu()
